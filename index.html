@@ -39,6 +39,8 @@
         }
         video.src = videos[index];
         video.load();
+        
+        messageHandler.postMessage("다음!!!");
       };
     });
 
