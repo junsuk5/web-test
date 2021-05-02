@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    var index = 0;
+
+    let videos = [
+      "https://player.vimeo.com/external/530794320.hd.mp4?s=068c0f28633bbd8531fae2c03b12258c63c14d67&profile_id=175",
+      "https://player.vimeo.com/external/530793823.hd.mp4?s=942cfe1a1b8c5608ea367479b3bf464e5d896891&profile_id=175&download=1",
+      "https://player.vimeo.com/external/530793693.hd.mp4?s=fcecda4ed8bdccbe930f112e34c60031a5304dac&profile_id=175&download=1",
+      "https://player.vimeo.com/external/530793518.hd.mp4?s=aa253a6a492bb6ddc7fbe4ed314945214513e7bc&profile_id=175&download=1"
+    ];
+
+    $(function () {
+      var video = document.getElementsByTagName('video')[0];
+      var sources = video.getElementsByTagName('source');
+
+      $("#next_btn").click(function () {
+        sources[0].src = videos[1];
+        video.load();
+      });
+      $("#prev_btn").click(function () {
+        sources[0].src = videos[2];
+        video.load();
+      });
+
+      video.onended = function () {
+        if (index < videos.length - 1) {
+          index++;
+
+        } else {
+          index = 0;
+        }
+        video.src = videos[index];
+        video.load();
+      };
+    });
+
+  </script>
+</head>
+
+<body>
+  <video height="300" autoplay controls>
+    <source
+      src="https://player.vimeo.com/external/530794320.hd.mp4?s=068c0f28633bbd8531fae2c03b12258c63c14d67&profile_id=175"
+      type="video/mp4">
+  </video>
+
+  <div>
+    <button id="prev_btn">이전</button>
+    <button id="next_btn">다음</button>
+  </div>
+</body>
+
+</html>
